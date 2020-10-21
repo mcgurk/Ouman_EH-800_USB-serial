@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 
 # sudo apt install python3-pip python3-serial
+# (sudo apt install python3-matplotlib)
 # sudo pip3 install xmodem
 
 PORT = '/dev/ttyACM0'
 FILENAME = 'trend.log'
 
-import serial
+import sys, time, serial
 from xmodem import XMODEM
-#from time import sleep
-import time
+import matplotlib.pyplot as plt
+#import numpy as np
+
 #ser = serial.Serial(PORT, timeout=0) # or whatever port you need
 ser = serial.Serial(PORT, timeout=2)
 
@@ -68,7 +70,10 @@ def get_measurements(verbose = False):
 #send_cmd('time') # b'time\n'
 #receive_line() # b'Wednesday, 2020-10-21 18:53.58\r\n'
 
-#download(FILENAME)
+if len(sys.argv) > 1:
+  if str(sys.argv[1]) == 'download':
+    download(FILENAME)
+
 #get_measurements()
 
 #00000000: 9d00 a005 1400 0200 0300 0400 0500 0900  ................
@@ -84,21 +89,60 @@ def get_measurements(verbose = False):
 file = open(FILENAME, 'rb')
 #"header" 22 bytes
 #one entry 20 bytes
+file.seek(0, 2) # end of file
+filesize = file.tell()
+file.seek(0, 0) # start of file
+samples = int((filesize - 22) / 20)
+print(samples)
 header = file.read(22)
-data = file.read(20)
-epoch = (data[3] << 24) + (data[2] << 16) + (data[1] << 8) + data[0]
-ulko = ((data[5] << 8) + data[4]) / 10.0
-meno = ((data[7] << 8) + data[6]) / 10.0
-vent = (data[17] << 8) + data[16]
-#print(data)
-print(epoch)
-#time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(1347517370))
+values = []
+x1 = []
+y1 = []
+for c in range(samples):
+  data = file.read(20)
+  epoch = (data[3] << 24) + (data[2] << 16) + (data[1] << 8) + data[0]
+  ulko = ((data[5] << 8) + data[4]) / 10.0
+  meno = ((data[7] << 8) + data[6]) / 10.0
+  vent = ((data[17] << 8) + data[16]) / 1.0
+  values.append([ epoch, ulko, meno, vent ])
+  y1.append(float(meno))
+
+#print(epoch)
 date = time.strftime('%d.%m.%Y %H:%M:%S', time.gmtime(epoch))
-print(date)
-print(ulko)
-print(meno)
-print(vent)
-#print(data[3] << 24)
+#print(date)
+#print(ulko)
+#print(meno)
+#print(vent)
+#print(values)
 file.close()
+
+for x in range(samples):
+#for x in range(100):
+#  x1.append(x)
+  epoch = values[x][0]
+  x1.append(time.strftime('%H:%M', time.gmtime(epoch)))
+
+#print(x1)
+#plt.plot(x1, y1)
+total = 160
+plt.plot(x1[0:total], y1[0:total])
+plt.xlabel('Aika')
+plt.ylabel('°C')
+plt.title('Menovesi')
+
+#fig, ax = plt.subplots()
+#width = np.diff(x1).min()
+#ax.bar(x1, y1, align='center', width=width)
+#ax.xaxis_date()
+#fig.autofmt_xdate()
+
+#x_ticks = [0, 16, 5]
+x_ticks = x1[:total:20]
+plt.xticks(x_ticks)
+
+#plt.axhline(y=5,color='gray')
+plt.grid()
+
+plt.show()
 
 ser.close()
