@@ -2,6 +2,7 @@
 
 # sudo apt install python3-pip python3-serial
 # (sudo apt install python3-matplotlib)
+# (sudo apt install python3-paho-mqtt)
 # sudo pip3 install xmodem
 
 PORT = '/dev/ttyACM0'
@@ -9,8 +10,8 @@ FILENAME = 'trend.log'
 
 import sys, time, serial
 from xmodem import XMODEM
-import matplotlib.pyplot as plt
-#import numpy as np
+#import matplotlib.pyplot as plt
+import paho.mqtt.client as mqtt
 
 #ser = serial.Serial(PORT, timeout=0) # or whatever port you need
 ser = serial.Serial(PORT, timeout=2)
@@ -62,19 +63,12 @@ def get_measurements(verbose = False):
 
   if verbose:
     print(values)
-  print('Menovesi: ' + str(values[8]))
-  print('Ulkoilma: ' + str(values[9]))
-  print('Venttiili: ' + str(values[14]))
+  v = [ values[8], values[9], values[14] ]
+  print('Menovesi: ' + str(v[0]))
+  print('Ulkoilma: ' + str(v[1]))
+  print('Venttiili: ' + str(v[2]))
+  return v
 
-
-#send_cmd('time') # b'time\n'
-#receive_line() # b'Wednesday, 2020-10-21 18:53.58\r\n'
-
-if len(sys.argv) > 1:
-  if str(sys.argv[1]) == 'download':
-    download(FILENAME)
-
-#get_measurements()
 
 #00000000: 9d00 a005 1400 0200 0300 0400 0500 0900  ................
 #00000010: 0800 1001 3201 1737 8f5f 0200 8c01 f1d8  ....2..7._......
@@ -85,64 +79,100 @@ if len(sys.argv) > 1:
 #00000060: 0000 0400 0000 2830 8f5f 0000 7a01 f1d8  ......(0._..z...
 #00000070: f1d8 f1d8 0000 0900 0000 8032 8f5f 0000  ...........2._..
 #00000080: 8201 f1d8 f1d8 f1d8 0000 0700 0000 d834  ...............4
+def graph():
+  file = open(FILENAME, 'rb')
+  #"header" 22 bytes
+  #one entry 20 bytes
+  file.seek(0, 2) # end of file
+  filesize = file.tell()
+  file.seek(0, 0) # start of file
+  samples = int((filesize - 22) / 20)
+  print(samples)
+  header = file.read(22)
+  values = []
+  x1 = []
+  y1 = []
+  for c in range(samples):
+    data = file.read(20)
+    epoch = (data[3] << 24) + (data[2] << 16) + (data[1] << 8) + data[0]
+    ulko = ((data[5] << 8) + data[4]) / 10.0
+    meno = ((data[7] << 8) + data[6]) / 10.0
+    vent = ((data[17] << 8) + data[16]) / 1.0
+    values.append([ epoch, ulko, meno, vent ])
+    y1.append(float(meno))
 
-file = open(FILENAME, 'rb')
-#"header" 22 bytes
-#one entry 20 bytes
-file.seek(0, 2) # end of file
-filesize = file.tell()
-file.seek(0, 0) # start of file
-samples = int((filesize - 22) / 20)
-print(samples)
-header = file.read(22)
-values = []
-x1 = []
-y1 = []
-for c in range(samples):
-  data = file.read(20)
-  epoch = (data[3] << 24) + (data[2] << 16) + (data[1] << 8) + data[0]
-  ulko = ((data[5] << 8) + data[4]) / 10.0
-  meno = ((data[7] << 8) + data[6]) / 10.0
-  vent = ((data[17] << 8) + data[16]) / 1.0
-  values.append([ epoch, ulko, meno, vent ])
-  y1.append(float(meno))
+  #print(epoch)
+  date = time.strftime('%d.%m.%Y %H:%M:%S', time.gmtime(epoch))
+  #print(values)
+  file.close()
 
-#print(epoch)
-date = time.strftime('%d.%m.%Y %H:%M:%S', time.gmtime(epoch))
-#print(date)
-#print(ulko)
-#print(meno)
-#print(vent)
-#print(values)
-file.close()
+  for x in range(samples):
+    epoch = values[x][0]
+    x1.append(time.strftime('%H:%M', time.gmtime(epoch)))
 
-for x in range(samples):
-#for x in range(100):
-#  x1.append(x)
-  epoch = values[x][0]
-  x1.append(time.strftime('%H:%M', time.gmtime(epoch)))
+  total = 160
+  plt.plot(x1[0:total], y1[0:total])
+  plt.xlabel('Aika')
+  plt.ylabel('°C')
+  plt.title('Menovesi')
+  x_ticks = x1[:total:20]
+  plt.xticks(x_ticks)
+  #plt.axhline(y=5,color='gray')
+  plt.grid()
 
-#print(x1)
-#plt.plot(x1, y1)
-total = 160
-plt.plot(x1[0:total], y1[0:total])
-plt.xlabel('Aika')
-plt.ylabel('°C')
-plt.title('Menovesi')
+  plt.show()
 
-#fig, ax = plt.subplots()
-#width = np.diff(x1).min()
-#ax.bar(x1, y1, align='center', width=width)
-#ax.xaxis_date()
-#fig.autofmt_xdate()
 
-#x_ticks = [0, 16, 5]
-x_ticks = x1[:total:20]
-plt.xticks(x_ticks)
+send_cmd('time') # b'time\n'
+receive_line() # b'Wednesday, 2020-10-21 18:53.58\r\n'
 
-#plt.axhline(y=5,color='gray')
-plt.grid()
+if len(sys.argv) > 1:
+  if str(sys.argv[1]) == 'download':
+    download(FILENAME)
 
-plt.show()
-
+v = get_measurements()
+print(v)
 ser.close()
+
+f = open("credentials.txt", "r")
+exec(f.read())
+f.close()
+#print(MQTT_SERVER)
+#print(MQTT_PORT)
+#print(MQTT_USERNAME)
+#print(MQTT_PASSWORD)
+#print(MQTT_API_KEY)
+
+flag_connected = 0
+
+def on_connect(client, userdata, flags, rc):
+  print("Connected with result code "+str(rc))
+  #client.subscribe("$SYS/#")
+  if rc == 0:
+    print("Connection OK")
+  else:
+   print("Connection error!")
+  global flag_connected
+  flag_connected = 1
+
+def on_publish(client, userdata, rc): #create function for callback
+  #print("data published \n")
+  print("Data published with result code "+str(rc))
+  #pass
+
+client1 = mqtt.Client("control1")         #create client object
+client1.on_connect = on_connect
+client1.on_publish = on_publish           #assign function to callback
+client1.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
+#client1.username_pw_set("dfdsl", "fgsdfs")
+client1.connect(MQTT_SERVER, MQTT_PORT)   #establish connection
+#timeout = 5
+#timeout_start = time.time()
+while not flag_connected:
+  client1.loop()
+  #if time.time() > timeout_start + timeout:
+    #print("Connect error!")
+    #break
+msg = '{ "v0":' + str(v[0]) + ', "v1":' + str(v[1]) + ', "v2":' + str(v[2]) + ' }'
+print(msg)
+client1.publish("ouman", msg)   #publish
