@@ -134,7 +134,7 @@ v = get_measurements()
 print(v)
 ser.close()
 
-f = open("credentials.txt", "r")
+f = open(sys.path[0]+"/credentials.txt", "r")
 exec(f.read())
 f.close()
 #print(MQTT_SERVER)
