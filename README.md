@@ -322,5 +322,7 @@ exec !! rx -X -c file.log
 truncate --size=28822 file.log # trend.log is always 28822 bytes
 ```
 
-## trend.log fileformat
-- check from eh800.py
+## trend.log
+- always 28822 bytes (header 22 bytes. one record 20 bytes, 1440 records (10 days, one record every 600s (10min))
+- used for drawing trends at EH-800B display
+- check fileformat from eh800.py
