@@ -34,6 +34,9 @@ Pin | function | notes
 - doesn't echo back
 - works with Raspberry Pi
 - couldn't get to work with ESP8266/USB-host-shield and Arduino IDE (something to do with CDC/ACM?)
+- cannot be used to set most values
+- altought only reading values is possible, firmware can be written and time/date can be changed and filesystem can be manipulated. So keep it secure from Internet!
+
 ```
 **********************************
 *          OUMAN EH-800          *
