@@ -32,8 +32,9 @@ Pin | function | notes
 **********************************
 ```
 ### ?
+
 <details>
-  <summary>Click to expand!</summary>
+<summary>Click to expand!</summary>
 ```
 ---------------------------------------------
 ?
@@ -76,6 +77,7 @@ PTESTER [test number]
         Do tests with production tester.	
 ```
 </details>
+
 ### LIST
 ```
 ---------------------------------------------
