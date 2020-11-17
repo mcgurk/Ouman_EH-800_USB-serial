@@ -321,3 +321,6 @@ ctrl-a -> :
 exec !! rx -X -c file.log
 truncate --size=28822 file.log # trend.log is always 28822 bytes
 ```
+
+## trend.log fileformat
+- check from eh800.py
