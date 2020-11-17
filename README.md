@@ -21,7 +21,8 @@ Pin | function | notes
 # USB-serial (miniUSB)
 - miniUSB
 - uses LF+CR / 0A+0D / 10+13 / `\n\r` as newline
-- Help with ? and [enter]
+- help with ? and [enter]
+- doesn't echo back
 ```
 **********************************
 *          OUMAN EH-800          *
@@ -69,4 +70,43 @@ FIRMWARE
         Update firmware version.
 PTESTER [test number]
         Do tests with production tester.	
+```
+LIST:
+```
+---------------------------------------------
+20.10.2020 16:00        objects.dat     3172
+19.07.2012 08:16        ea2.bmp         118
+19.07.2012 08:16        alertsb.bmp     118
+19.07.2012 08:16        curve.bmp       118
+19.07.2012 08:16        curve_bg.bmp    972
+19.07.2012 08:16        ea.bmp          118
+19.07.2012 08:16        ea_bg.bmp       822
+19.07.2012 08:16        L1_bg.bmp       1014
+19.07.2012 08:16        l1b.bmp         118
+19.07.2012 08:16        sch_bg.bmp      1014
+19.07.2012 08:16        schedule.bmp    118
+19.07.2012 08:16        set_bg.bmp      1254
+19.07.2012 08:16        settings.bmp    118
+19.07.2012 08:16        alarm_bg.bmp    1014
+19.07.2012 08:16        svenska.lng     14465
+19.07.2012 08:16        start.bmp       3894
+19.07.2012 08:16        rele_bg.bmp     1388
+19.07.2012 08:16        rele.bmp        118
+19.07.2012 08:16        curve2.bmp      118
+19.07.2012 08:16        l2b.bmp         118
+19.07.2012 08:17        english.lng     14691
+19.07.2012 08:17        russian.lng     24277
+19.07.2012 08:17        smallfont.ehf   3504
+19.07.2012 08:18        polish.lng      16002
+19.07.2012 08:18        eesti.lng       15378
+19.07.2012 11:36        alarm.log       563
+20.10.2020 15:48        error.log       360
+20.10.2020 16:38        trend.log       28822
+28.11.2012 11:45        suomi.edt       44
+20.10.2020 16:39        trend.otr       1
+20.10.2020 16:39        objects.ini     0
+
+31 Files in drive A
+Memory usage 13 %
+137472 B of 1004288 B
 ```
