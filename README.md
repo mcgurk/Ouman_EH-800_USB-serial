@@ -1,5 +1,7 @@
 # Ouman_EH-800_USB-serial
+
 Ouman EH-800 USB serial interface
+- https://ouman.fi/wp-content/uploads/2018/08/EH-800__manual__fi.pdf#page=
 
 # RJ45-2
 
@@ -14,9 +16,16 @@ Pin | function | notes
 7 | RS232 output | RS232 levels, needs MAX232 or similar
 8 | RS232 input | RS232 levels, needs MAX232 or similar
 
-# RS-232
+## EXU-800
 
-9600bps without flow control. Sends `AT` and `AT&F`, but I don't know how to reply.
+- https://ouman.fi/wp-content/uploads/2018/08/EXU-800__installation_instructions__fi.pdf
+- includes connectors for wires and relay?
+- EXU-800 functions are usable straight from RJ45-2 without EXU-800 (excluding EXU-800-relay)
+
+# RS-232 from RJ45-2
+
+- 9600bps without flow control
+- sends `AT` and `AT&F`, but I don't know how to reply
 
 # USB-serial (miniUSB)
 - miniUSB
