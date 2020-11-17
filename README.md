@@ -29,7 +29,7 @@ Pin | function | notes
 *         command prompt         *
 **********************************
 ```
-? and [enter]:
+### ?
 ```
 ---------------------------------------------
 ?
@@ -71,7 +71,7 @@ FIRMWARE
 PTESTER [test number]
         Do tests with production tester.	
 ```
-LIST:
+### LIST
 ```
 ---------------------------------------------
 20.10.2020 16:00        objects.dat     3172
@@ -109,4 +109,18 @@ LIST:
 31 Files in drive A
 Memory usage 13 %
 137472 B of 1004288 B
+```
+### DEVINFO
+```
+Device: OUMAN EH-800B  V2.2.2
+Serial Number: xxxxxxxx
+MAC Address:
+Actuator: XHALOMO
+Serial Number: xxxxxxxxxxxxxxxxxxxxx
+Kohde:
+```
+### OSINFO
+```
+FreeRTOS V5.2.0
+Tasks running: 14
 ```
