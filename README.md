@@ -285,3 +285,16 @@ Device Descriptor:
 
 ```
 </details>
+
+## Download file manually
+- Notice that upload/download is from EH-800B perspective. If you want download file e.g. to your computer, use "upload".
+- Notice that downloaded file is always dividable by 128 bytes. If original file is not dividable by 128, 0x1a is padded to end of file.
+- Uses Xmodem (-X option) with crc (-c option)
+```
+sudo apt install screen
+screen /dev/ttyACM0 115200
+upload trend.log
+ctrl-a -> :
+exec !! rx -X -c file.log
+truncate --size=28822 file.log # trend.log is always 28822 bytes
+```
