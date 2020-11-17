@@ -23,6 +23,8 @@ Pin | function | notes
 - uses LF+CR / 0A+0D / 10+13 / `\n\r` as newline
 - help with ? and [enter]
 - doesn't echo back
+- works with Raspberry Pi
+- couldn't get to work with ESP8266/USB-host-shield and Arduino IDE
 ```
 **********************************
 *          OUMAN EH-800          *
@@ -155,4 +157,97 @@ MEASUREMENTS (menovesi 37 ja ulkolämp 1):
 0.0 %
 42.2 C
 0.0 dig
+```
+## Raspberry Pi lsusb
+```
+pi@raspberrypi:~ $ lsusb -v
+
+Bus 001 Device 007: ID eb03:0920 MakingThings Make Controller Kit
+Couldn't open device, some information will be missing
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               1.10
+  bDeviceClass            2 Communications
+  bDeviceSubClass         0
+  bDeviceProtocol         0
+  bMaxPacketSize0         8
+  idVendor           0xeb03 MakingThings
+  idProduct          0x0920 Make Controller Kit
+  bcdDevice            1.10
+  iManufacturer           1
+  iProduct                2
+  iSerial                 0
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0043
+    bNumInterfaces          2
+    bConfigurationValue     1
+    iConfiguration          3
+    bmAttributes         0x80
+      (Bus Powered)
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         2 Communications
+      bInterfaceSubClass      2 Abstract (modem)
+      bInterfaceProtocol      0
+      iInterface              4
+      CDC Header:
+        bcdCDC               1.10
+      CDC ACM:
+        bmCapabilities       0x00
+      CDC Union:
+        bMasterInterface        0
+        bSlaveInterface         1
+      CDC Call Management:
+        bmCapabilities       0x00
+        bDataInterface          1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval             255
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass        10 CDC Data
+      bInterfaceSubClass      0
+      bInterfaceProtocol      0
+      iInterface              0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x01  EP 1 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               0
+
 ```
