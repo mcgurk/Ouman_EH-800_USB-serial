@@ -4,9 +4,9 @@ Ouman EH-800(B)
 - EH-800 includes webserver and ethernet port, EH-800B doesn't
 - both includes RJ42-2 and miniUSB
 - https://ouman.fi/wp-content/uploads/2018/08/EH-800__manual__fi.pdf#page=
-- AT91SAM7X512
-- NTC10 temperature sensors
+- Atmel AT91SAM7X512 ARM microcontroller
 - MP232EC serial interface
+- NTC10 temperature sensors: https://www.taloon.com/media/attachments/ouman/huoneanturi_tmr_tekninen_esite.pdf
 - power supply: 24V 300mA DC/AC (official power is DC)
 - about 0.5A with 5V and ZTW-SY-8 step-up-module
 
