@@ -1,6 +1,7 @@
 # Ouman_EH-800_USB-serial
 
-Ouman EH-800 USB serial interface
+Ouman EH-800(B)
+- 800 includes webserver and ethernet port, 800B doesn't
 - https://ouman.fi/wp-content/uploads/2018/08/EH-800__manual__fi.pdf#page=
 
 # RJ45-2
