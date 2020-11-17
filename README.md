@@ -31,10 +31,10 @@ Pin | function | notes
 *         command prompt         *
 **********************************
 ```
-### ?
+### COMMAND: ?
 
 <details>
-<summary>Click to expand!</summary>
+<summary>Show</summary>
         
 ```
 ---------------------------------------------
@@ -79,7 +79,10 @@ PTESTER [test number]
 ```
 </details>
 
-### LIST
+### COMMAND: LIST
+<details>
+<summary>Show</summary>
+
 ```
 ---------------------------------------------
 20.10.2020 16:00        objects.dat     3172
@@ -118,7 +121,13 @@ PTESTER [test number]
 Memory usage 13 %
 137472 B of 1004288 B
 ```
-### DEVINFO
+</details>
+
+### COMMAND: DEVINFO
+
+<details>
+<summary>Show</summary>
+
 ```
 Device: OUMAN EH-800B  V2.2.2
 Serial Number: xxxxxxxx
@@ -127,12 +136,24 @@ Actuator: XHALOMO
 Serial Number: xxxxxxxxxxxxxxxxxxxxx
 Kohde:
 ```
-### OSINFO
+</details>
+
+### COMMAND: OSINFO
+
+<details>
+<summary>Show</summary>
+
 ```
 FreeRTOS V5.2.0
 Tasks running: 14
 ```
-### MEASUREMENTS
+</details>
+
+### COMMAND: MEASUREMENTS
+
+<details>
+<summary>Show</summary>
+
 ```
 MEASUREMENTS (menovesi 37 ja ulkolämp 1):
 34.0 C
@@ -164,7 +185,13 @@ MEASUREMENTS (menovesi 37 ja ulkolämp 1):
 42.2 C
 0.0 dig
 ```
+</details>
+
 ## Raspberry Pi lsusb
+
+<details>
+<summary>Show</summary>
+
 ```
 pi@raspberrypi:~ $ lsusb -v
 
@@ -257,3 +284,4 @@ Device Descriptor:
         bInterval               0
 
 ```
+</details>
