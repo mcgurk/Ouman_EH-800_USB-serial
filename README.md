@@ -187,6 +187,17 @@ MEASUREMENTS (menovesi 37 ja ulkolämp 1):
 ```
 </details>
 
+## COMMAND: TIME
+```
+Wednesday, 2020-10-21 18:53.58
+```
+
+## COMMAND: UPLOAD
+```
+Start receiving now.
+28822 Bytes Transmitted.
+```
+
 ## Raspberry Pi lsusb
 
 <details>
