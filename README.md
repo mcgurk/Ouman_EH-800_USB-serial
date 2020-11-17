@@ -6,7 +6,7 @@ Ouman EH-800 USB serial interface
 Pin | function | notes
 --- | --- | ---
 1 | GND | -
-2 | 24VDC | - 
+2 | 24VDC | max 3W
 3 | Mittauskanava 6 | Digital input
 4 | Mittauskanava 5 | Digital/analog input. If L2 enabled, can be used only for L2 menovesi.
 5 | Releohjaus | relay OFF: 5 = not connected (floating), relay ON: 5 = GND (+24V between 5 and 2)
