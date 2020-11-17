@@ -24,7 +24,7 @@ Pin | function | notes
 - help with ? and [enter]
 - doesn't echo back
 - works with Raspberry Pi
-- couldn't get to work with ESP8266/USB-host-shield and Arduino IDE
+- couldn't get to work with ESP8266/USB-host-shield and Arduino IDE (something to do with CDC/ACM?)
 ```
 **********************************
 *          OUMAN EH-800          *
