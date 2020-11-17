@@ -3,7 +3,7 @@ Ouman EH-800 USB serial interface
 
 # RJ45-2
 
-Pin | function
+Pin | function | 
 --- | --- | ---
-1 | GND
-2 | 24VDC
+1 | GND | 
+2 | 24VDC | 
