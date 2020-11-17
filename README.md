@@ -2,6 +2,7 @@
 
 Ouman EH-800(B)
 - EH-800 includes webserver and ethernet port, EH-800B doesn't
+- both includes RJ42-2 and miniUSB
 - https://ouman.fi/wp-content/uploads/2018/08/EH-800__manual__fi.pdf#page=
 
 # RJ45-2
