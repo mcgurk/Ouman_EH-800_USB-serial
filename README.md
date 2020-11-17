@@ -124,3 +124,35 @@ Kohde:
 FreeRTOS V5.2.0
 Tasks running: 14
 ```
+### MEASUREMENTS
+```
+MEASUREMENTS (menovesi 37 ja ulkolämp 1):
+34.0 C
+0.0 C
+0.0 C
+3.0 C #ei ainakaan ulkolämpötila tämähetki
+0.0 C
+0.0 C
+36.7 C
+0.0 C
+36.6 C #menovesi tämähetki? [8]
+1.2 C #ulko tämähetki? [9]
+1.6 C
+0.0 C
+0.0 C
+0.0 C
+8.0 % [14]
+8.4 % [15]
+0.0 C
+0.0 C
+39.7 C
+15.0 C 
+-.5 C #maksimi/minimi tai jokin keskiarvo?
+0.0 C
+0.0 C
+0.0 C
+0.0 %
+0.0 %
+42.2 C
+0.0 dig
+```
