@@ -32,6 +32,8 @@ Pin | function | notes
 **********************************
 ```
 ### ?
+<details>
+  <summary>Click to expand!</summary>
 ```
 ---------------------------------------------
 ?
@@ -73,6 +75,7 @@ FIRMWARE
 PTESTER [test number]
         Do tests with production tester.	
 ```
+</details>
 ### LIST
 ```
 ---------------------------------------------
