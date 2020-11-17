@@ -338,3 +338,30 @@ truncate --size=28822 file.log # trend.log is always 28822 bytes
 - always 28822 bytes (header 22 bytes. one record 20 bytes, 1440 records (10 days, one record every 600s (10min))
 - used for drawing trends at EH-800B display
 - check fileformat from eh800.py
+
+## shell snippets
+```
+~/get:
+FILENAME=trend.log
+echo "Starting connection..."
+screen -d -m -S ouman /dev/ttyACM0 115200
+sleep 1
+screen -S ouman -X stuff "time^M"
+sleep 1
+screen -S ouman -X stuff "upload trend.log^M"
+sleep 1
+screen -S ouman -X exec \!\! rx -X -c $FILENAME
+echo "now transfering... "
+sleep 5
+screen -S ouman -X kill
+truncate --size=28822 $FILENAME
+
+~/cmd:
+stty -F /dev/ttyACM0 115200 raw -echo
+exec 99<>/dev/ttyACM0
+printf "measurements\r" >&99
+#read answer <&99  # this reads just a CR
+#read answer <&99  # this reads the answer OK
+exec 99>&-
+(usage: ./cmd > test.txt)
+```
