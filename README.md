@@ -14,7 +14,7 @@ Needed packages:
 ```
 sudo apt install screen python3-serial
 ```
-
+Autostartup at bootup:
 ```
 rc.local:
 su - pi -c "screen -d -m watch -n 600 ~/Ouman_EH-800_USB-serial/eh800.py"
