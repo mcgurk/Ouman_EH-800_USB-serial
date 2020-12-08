@@ -12,7 +12,7 @@ Ouman EH-800(B)
 
 Needed packages:
 ```
-sudo apt install screen python3-pip python3-serial
+sudo apt install screen python3-pip python3-serial python3-paho-mqtt
 sudo pip3 install xmodem
 ```
 Autostartup at bootup:
