@@ -10,6 +10,11 @@ Ouman EH-800(B)
 - power supply: 24V 300mA DC/AC (official power supply is DC)
 - about 0.5A with 5V and ZTW-SY-8 step-up-module
 
+Needed packages:
+```
+sudo apt install screen python3-serial
+```
+
 ```
 rc.local:
 su - pi -c "screen -d -m watch -n 600 ~/Ouman_EH-800_USB-serial/eh800.py"
