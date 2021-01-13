@@ -23,7 +23,7 @@ def putc(data, timeout=1):
   return ser.write(data)  # note that this ignores the timeout
 
 def send_cmd(cmd):
-  ser.write(bytes(cmd, 'ASCII') + b'\n')
+  ser.write(bytes(cmd, 'ASCII') + b'\r\n')
   print('cmd: ' + cmd)
 
 def receive_line(verbose = True):
