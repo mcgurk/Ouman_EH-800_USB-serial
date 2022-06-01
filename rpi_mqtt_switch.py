@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+#rc.local:
+#su - pi -c "screen -dmS light_switch ~/IoT/rpi_mqtt_switch.py"
+
+#credentials.txt:
+#MQTT_SERVER = 'xxxxx'
+#MQTT_PORT = 1883
+#MQTT_USERNAME = 'xxxxx'
+#MQTT_PASSWORD = 'xxxxx'
+
 import signal
 import sys
 #from time import sleep
