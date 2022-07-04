@@ -65,7 +65,11 @@ def get_measurements(verbose = False):
 
   if verbose:
     print('*', values)
-  v = [ values[8], values[9], values[14] ]
+  #v = [ values[8], values[9], values[14] ]
+  try:
+    v = [ values[8], values[9], values[14] ]
+  except:
+    v = [ float("nan"), float("nan"), float("nan") ]
   print('*Menovesi: ' + str(v[0]))
   print('*Ulkoilma: ' + str(v[1]))
   print('*Venttiili: ' + str(v[2]))
