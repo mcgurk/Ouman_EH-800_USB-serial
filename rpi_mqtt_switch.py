@@ -3,6 +3,10 @@
 #rc.local:
 #su - pi -c "screen -dmS light_switch ~/IoT/rpi_mqtt_switch.py"
 
+#sudo pip3 install forever
+#python3 -mforever.run python3 ~/IoT/rpi_mqtt_switch.py
+#su - pi -c "screen -dmS light_switch python3 -mforever.run python3 ~/IoT/rpi_mqtt_switch.py" 
+
 #credentials.txt:
 #MQTT_SERVER = 'xxxxx'
 #MQTT_PORT = 1883
