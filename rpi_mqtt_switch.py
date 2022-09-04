@@ -4,9 +4,10 @@
 #su - pi -c "screen -dmS light_switch ~/IoT/rpi_mqtt_switch.py"
 
 #sudo apt install python3-rpi.gpio
+#https://pypi.org/project/forever/
 #sudo pip3 install forever
-#python3 -mforever.run python3 ~/IoT/rpi_mqtt_switch.py
-#su - pi -c "screen -dmS light_switch python3 -mforever.run python3 ~/IoT/rpi_mqtt_switch.py" 
+#python3 -m forever.run python3 -u ~/IoT/rpi_mqtt_switch.py
+#su - pi -c "screen -dmS light_switch python3 -m forever.run python3 -u ~/IoT/rpi_mqtt_switch.py" 
 
 #credentials.txt:
 #MQTT_SERVER = 'xxxxx'
