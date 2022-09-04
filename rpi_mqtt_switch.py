@@ -17,7 +17,7 @@
 
 import signal
 import sys
-#from time import sleep
+from time import sleep
 import time, datetime
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
@@ -87,6 +87,11 @@ if __name__ == '__main__':
   GPIO.setmode(GPIO.BCM)
   GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
   GPIO.add_event_detect(BUTTON_GPIO, GPIO.BOTH, callback=button_callback, bouncetime=500)
-  signal.signal(signal.SIGINT, signal_handler)
-  signal.pause()
+  
+  #signal.signal(signal.SIGINT, signal_handler)
+  #signal.pause()
+
+  while True:
+    print("ping")
+    sleep(2)
 
