@@ -3,6 +3,7 @@
 #rc.local:
 #su - pi -c "screen -dmS light_switch ~/IoT/rpi_mqtt_switch.py"
 
+#sudo apt install python3-rpi.gpio
 #sudo pip3 install forever
 #python3 -mforever.run python3 ~/IoT/rpi_mqtt_switch.py
 #su - pi -c "screen -dmS light_switch python3 -mforever.run python3 ~/IoT/rpi_mqtt_switch.py" 
