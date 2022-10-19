@@ -2,6 +2,7 @@
 
 #rc.local:
 #su - pi -c "screen -dmS light_switch ~/IoT/rpi_mqtt_switch.py"
+#su - pi -c "screen -dmS light_switch ~/Ouman_EH-800_USB-serial/rpi_mqtt_switch.py"
 
 #sudo apt install python3-rpi.gpio
 #https://pypi.org/project/forever/
@@ -60,7 +61,8 @@ def send(cmd):
   msg = '{ "state": "' + cmd + '" }'
   print("*MQTT-message: " + msg)
   #client1.publish("zigbee2mqtt/olohuone_jalkalamppu_ylos/set", msg)
-  client1.publish("zigbee2mqtt/vessan_eteinen_kattolamppu/set", msg)
+  #client1.publish("zigbee2mqtt/vessan_eteinen_kattolamppu/set", msg)
+  client1.publish("iot/switch", msg)
   client1.disconnect()
   #sys.exit()
 
