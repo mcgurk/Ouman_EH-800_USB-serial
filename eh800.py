@@ -7,10 +7,8 @@
 
 #https://pypi.org/project/forever/
 #sudo pip3 install forever
-#python3 -m forever.run python3 -u ~/Ouman_EH-800_USB-serial
-/eh800.py
-#su - pi -c "screen -dmS ouman python3 -m forever.run python3 -u ~/Ouman_EH-800_USB-serial
-/eh800.py" 
+#python3 -m forever.run python3 -u ~/Ouman_EH-800_USB-serial/eh800.py
+#su - pi -c "screen -dmS ouman python3 -m forever.run python3 -u ~/Ouman_EH-800_USB-serial/eh800.py" 
 
 PORT = '/dev/ttyACM0'
 FILENAME = 'trend.log'
