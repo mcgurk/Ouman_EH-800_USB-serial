@@ -258,9 +258,12 @@ try:
     #client1.publish("ouman", msg)   #publish
     sendMQTTmsg()
     next_reading += INTERVAL
-    sleep_time = next_reading-time.time()
-    if sleep_time > 0:
-      time.sleep(sleep_time)
+    #sleep_time = next_reading-time.time()
+    #if sleep_time > 0:
+    #  time.sleep(sleep_time)
+    while time.time() < next_reading:
+      print("ping")
+      time.sleep(2)
 except KeyboardInterrupt:
   pass
 
