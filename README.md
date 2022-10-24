@@ -18,7 +18,8 @@ sudo pip3 install xmodem
 Autostartup at bootup:
 ```
 rc.local:
-su - pi -c "screen -d -m watch -n 600 ~/Ouman_EH-800_USB-serial/eh800.py"
+#su - pi -c "screen -d -m watch -n 600 ~/Ouman_EH-800_USB-serial/eh800.py"
+su - pi -c "screen -dmS ouman python3 -m forever.run -t 10 python3 -u ~/Ouman_EH-800_USB-serial/eh800.py" 
 ```
 # todo/bug
 First run after reset Ouman sends greetings message. This script doesn't handle that right. Second time script works.
