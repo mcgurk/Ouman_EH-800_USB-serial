@@ -133,7 +133,7 @@ def graph():
 
   plt.show()
 
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, rc, properties):
   print("*Connected with result code "+str(rc))
   #client.subscribe("$SYS/#")
   global flag_connected
@@ -144,7 +144,7 @@ def on_connect(client, userdata, flags, rc):
     print("*Connection error!")
     flag_connected = 0
 
-def on_publish(client, userdata, rc): #create function for callback
+def on_publish(client, userdata, mid, rc, properties): #create function for callback
   #print("data published \n")
   print("*Data published with result code "+str(rc))
   #pass
@@ -191,7 +191,7 @@ if ONCE:
   v = get_measurements(VERBOSE)
   #print(v)
   ser.close()
-  client1 = mqtt.Client("", clean_session=True)
+  client1 = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "", clean_session=True)
   client1.on_connect = on_connect # callback
   client1.on_publish = on_publish # callback
   client1.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
@@ -209,7 +209,7 @@ if ONCE:
 
 #--- LOOP ---
 
-client1 = mqtt.Client("", clean_session=True)
+client1 = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "", clean_session=True)
 client1.on_connect = on_connect # callback
 client1.on_publish = on_publish # callback
 client1.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
